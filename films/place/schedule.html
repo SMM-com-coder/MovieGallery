@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание сеансов</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <!-- Боковое меню -->
+    <div class="sidebar">
+        <h1 class="logo">Movie<span>Gallery</span></h1>
+        <div class="account-status" id="account-status">
+            <!-- Содержимое будет обновляться через JavaScript -->
+        </div>
+        <a href="../../Заглав1.html" class="menu-item">🏠 Главная</a>
+        <a href="../../movies.html" class="menu-item">🎥 Фильмы</a>
+        <a href="../../genres.html" class="menu-item">📚 Жанры</a>
+        <a href="../../about.html" class="menu-item">📖 О нас</a>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <section class="schedule">
+            <h1>Расписание сеансов</h1>
+            <div class="schedule-info">
+                <p>Дата: <span id="selected-date"></span></p>
+                <p>Формат: <span id="selected-format"></span></p>
+            </div>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Зал</th>
+                        <th>Места</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12:00</td>
+                        <td>Зал 1</td>
+                        <td><span class="seats">50/100</span></td>
+                        <td><button class="btn">Купить билет</button></td>
+                    </tr>
+                    <tr>
+                        <td>15:00</td>
+                        <td>Зал 2</td>
+                        <td><span class="seats">80/100</span></td>
+                        <td><button class="btn">Купить билет</button></td>
+                    </tr>
+                    <tr>
+                        <td>18:00</td>
+                        <td>Зал 3</td>
+                        <td><span class="seats">20/50</span></td>
+                        <td><button class="btn">Купить билет</button></td>
+                    </tr>
+                    <tr>
+                        <td>21:00</td>
+                        <td>Зал 1</td>
+                        <td><span class="seats">10/100</span></td>
+                        <td><button class="btn">Купить билет</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© MovieGallery</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Получаем параметры из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedDate = urlParams.get("date");
+            const selectedFormat = urlParams.get("format");
+
+            // Отображаем выбранные параметры
+            document.getElementById("selected-date").textContent = selectedDate || "Не выбрано";
+            document.getElementById("selected-format").textContent = selectedFormat || "Не выбран";
+        });
+    </script>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="tab active" id="login-tab">Вход</button>
+                <button class="tab" id="register-tab">Регистрация</button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма входа -->
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Введите e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Введите пароль" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <div class="form-group remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Запомнить меня</label>
+                    </div>
+                    <button type="submit" class="button">Войти</button>
+                </form>
+
+                <!-- Форма регистрации -->
+                <form id="register-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="reg-username">Никнейм</label>
+                        <input type="text" id="reg-username" placeholder="Придумайте никнейм" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">E-mail</label>
+                        <input type="email" id="reg-email" placeholder="Введите e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="reg-password" placeholder="Введите пароль" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Подтвердите пароль</label>
+                        <input type="password" id="confirm-password" placeholder="Введите пароль ещё раз" required>
+                    </div>
+                    <button type="submit" class="button">Зарегистрироваться</button>
+                </form>
+            </div>
+            <button class="close-modal" id="close-modal">×</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Инициализация системы отзывов для этой страницы
+            initReviewsSystem('bestmovie');
+        });
+    </script>
+
+    <script src="../js/common.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedDate = urlParams.get("date");
+            const selectedFormat = urlParams.get("format");
+    
+            document.getElementById("selected-date").textContent = selectedDate || "Не выбрано";
+            document.getElementById("selected-format").textContent = selectedFormat || "Не выбран";
+    
+            // Проверка, если дата в прошлом — скрываем сеансы
+            if (selectedDate) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Сброс времени
+                const inputDate = new Date(selectedDate);
+    
+                if (inputDate < today) {
+                    const table = document.querySelector(".schedule-table tbody");
+                    table.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: red;">
+                                Сеансы на выбранную дату недоступны
+                            </td>
+                        </tr>
+                    `;
+                    return; // Прерываем выполнение, чтобы не генерировать места
+                }
+            }
+    
+            // Генерация случайной заполняемости залов
+            const seatElements = document.querySelectorAll(".seats");
+            seatElements.forEach(el => {
+                const total = parseInt(el.textContent.split("/")[1]);
+                const occupied = Math.floor(Math.random() * (total + 1));
+                el.textContent = `${occupied}/${total}`;
+            });
+        });
+    </script>
+    
+    
+    <script src="../../js/common.js"></script>
+</body>
+</html>
