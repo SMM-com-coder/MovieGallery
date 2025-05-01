@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кунг-фу Панда</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h1 class="logo">Movie<span>Gallery</span></h1>
+        <div class="account-status" id="account-status">
+            <!-- Содержимое будет обновляться через JavaScript -->
+        </div>
+        <a href="../Заглав1.html" class="menu-item">🏠 Главная</a>
+        <a href="../movies.html" class="menu-item">🎥 Фильмы</a>
+        <a href="../genres.html" class="menu-item">📚 Жанры</a>
+        <a href="../about.html" class="menu-item">📖 О нас</a>
+    </div>
+
+    <main>
+        <div class="banner">
+            <img src="../image/Kungfupanda.jpg" alt="Кунг-фу Панда">
+            <div class="banner-info">
+                <h2>Кунг-фу Панда</h2>
+                <p>Год: 2008</p>
+                <p>Жанр: Анимация, приключения, комедия</p>
+                <p>Режиссер: Марк Осборн, Джон Стивенсон</p>
+                <p>В ролях: Джек Блэк, Дастин Хоффман, Анджелина Джоли, Иэн Макшейн</p>
+                <p>Описание: Неуклюжий, но добрый панда По мечтает стать мастером кунг-фу. Судьба дает ему шанс, когда он оказывается избранным Воином Дракона, которому предстоит защитить Долину Мира от зла.</p>
+            </div>
+        </div>
+
+        <section class="search-session">
+            <h2>Доступные сеансы</h2>
+            <form action="place/schedule.html" method="get">
+                <input type="date" name="date" required>
+                <select name="format">
+                    <option value="2D">2D</option>
+                    <option value="3D">3D</option>
+                </select>
+                <button type="submit" class="btn">Найти сеанс</button>
+            </form>
+        </section>
+
+        <section class="trailers">
+            <h2>Смотрите трейлер</h2>
+            <div class="trailer-container">
+                <iframe 
+                    src="https://rutube.ru/play/embed/e0fad0538401939350629e356d90888e/" 
+                    title="Трейлер Кунг-фу Панда (2008)" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Отзывы зрителей</h2>
+            <div class="reviews-container" id="reviews-container">
+                <div class="review">
+                    <p><strong>Олег:</strong> Весёлый и вдохновляющий мультфильм! Отличен как для детей, так и для взрослых.</p>
+                </div>
+                <div class="review">
+                    <p><strong>Мария:</strong> По — лучший герой! Фильм добрый, с юмором и поучительный.</p>
+                </div>
+            </div>
+            <form class="leave-review" id="review-form">
+                <h3>Оставить отзыв</h3>
+                <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© MovieGallery</p>
+    </footer>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="tab active" id="login-tab">Вход</button>
+                <button class="tab" id="register-tab">Регистрация</button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма входа -->
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Введите e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Введите пароль" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <div class="form-group remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Запомнить меня</label>
+                    </div>
+                    <button type="submit" class="button">Войти</button>
+                </form>
+
+                <!-- Форма регистрации -->
+                <form id="register-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="reg-username">Никнейм</label>
+                        <input type="text" id="reg-username" placeholder="Придумайте никнейм" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">E-mail</label>
+                        <input type="email" id="reg-email" placeholder="Введите e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="reg-password" placeholder="Введите пароль" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Подтвердите пароль</label>
+                        <input type="password" id="confirm-password" placeholder="Введите пароль ещё раз" required>
+                    </div>
+                    <button type="submit" class="button">Зарегистрироваться</button>
+                </form>
+            </div>
+            <button class="close-modal" id="close-modal">×</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Инициализация системы отзывов для этой страницы
+            initReviewsSystem('kungfupanda');
+        });
+    </script>
+
+    <script src="../js/common.js"></script>
+</body>
+</html>

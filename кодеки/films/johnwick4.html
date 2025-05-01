@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Джон Уик 4</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h1 class="logo">Movie<span>Gallery</span></h1>
+        <div class="account-status" id="account-status">
+            <!-- Содержимое будет обновляться через JavaScript -->
+        </div>
+        <a href="../Заглав1.html" class="menu-item">🏠 Главная</a>
+        <a href="../movies.html" class="menu-item">🎥 Фильмы</a>
+        <a href="../genres.html" class="menu-item">📚 Жанры</a>
+        <a href="../about.html" class="menu-item">📖 О нас</a>
+    </div>
+
+    <main>
+        <div class="banner">
+            <img src="../image/john-wick-4.jpg" alt="Джон Уик 4">
+            <div class="banner-info">
+                <h2>Джон Уик 4</h2>
+                <p>Год: 2023</p>
+                <p>Жанр: Боевик, триллер</p>
+                <p>Режиссер: Чад Стахелски</p>
+                <p>В ролях: Киану Ривз, Донни Йен, Билл Скарсгард, Лоуренс Фишбёрн</p>
+                <p>Описание: Джон Уик продолжает свою борьбу против Правления, но на этот раз ставки выше, чем когда-либо. Его путь ведет по всему миру в поисках свободы — и мести.</p>
+            </div>
+        </div>
+
+        <section class="search-session">
+            <h2>Доступные сеансы</h2>
+            <form action="place/schedule.html" method="get">
+                <input type="date" name="date" required>
+                <select name="format">
+                    <option value="2D">2D</option>
+                    <option value="3D">3D</option>
+                </select>
+                <button type="submit" class="btn">Найти сеанс</button>
+            </form>
+        </section>
+
+        <section class="trailers">
+            <h2>Смотрите трейлер</h2>
+            <div class="trailer-container">
+                <iframe 
+                    src="https://rutube.ru/play/embed/1cb68b67c048cd7dab1c3fc3510622ab/" 
+                    title="Трейлер Джон Уик 4 (2023)" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Отзывы зрителей</h2>
+            <div class="reviews-container" id="reviews-container">
+                <div class="review">
+                    <p><strong>Артур:</strong> Экшен на пределе возможного! Киану не подвёл, как всегда.</p>
+                </div>
+                <div class="review">
+                    <p><strong>Ирина:</strong> Лучший фильм серии! Картинка, музыка, драки — всё топ.</p>
+                </div>
+            </div>
+            <form class="leave-review" id="review-form">
+                <h3>Оставить отзыв</h3>
+                <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© MovieGallery</p>
+    </footer>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="tab active" id="login-tab">Вход</button>
+                <button class="tab" id="register-tab">Регистрация</button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма входа -->
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Введите e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Введите пароль" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <div class="form-group remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Запомнить меня</label>
+                    </div>
+                    <button type="submit" class="button">Войти</button>
+                </form>
+
+                <!-- Форма регистрации -->
+                <form id="register-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="reg-username">Никнейм</label>
+                        <input type="text" id="reg-username" placeholder="Придумайте никнейм" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">E-mail</label>
+                        <input type="email" id="reg-email" placeholder="Введите e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="reg-password" placeholder="Введите пароль" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Подтвердите пароль</label>
+                        <input type="password" id="confirm-password" placeholder="Введите пароль ещё раз" required>
+                    </div>
+                    <button type="submit" class="button">Зарегистрироваться</button>
+                </form>
+            </div>
+            <button class="close-modal" id="close-modal">×</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Инициализация системы отзывов для этой страницы
+            initReviewsSystem('johnwick4');
+        });
+    </script>
+
+    <script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Майнкрафт</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Боковое меню -->
+    <div class="sidebar">
+        <h1 class="logo">Movie<span>Gallery</span></h1>
+        <div class="account-status" id="account-status"></div>
+        <a href="../Заглав1.html" class="menu-item">🏠 Главная</a>
+        <a href="../movies.html" class="menu-item">🎥 Фильмы</a>
+        <a href="../genres.html" class="menu-item">📚 Жанры</a>
+        <a href="../about.html" class="menu-item">📖 О нас</a>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Баннер с фильмом -->
+        <div class="banner">
+            <img src="../image/minecraft.jpg" alt="Майнкрафт">
+            <div class="banner-info">
+                <h2>Майнкрафт</h2>
+                <p>Год: 2025</p>
+                <p>Жанр: Приключения, Фэнтези</p>
+                <p>Описание: Мир блоков оживает в полнометражном фильме о Minecraft! Следите за героем, который должен спасти свой мир от разрушения, путешествуя через биомы, преодолевая испытания и сталкиваясь с Криперами и другими опасностями.</p>
+            </div>
+        </div>
+
+        <!-- Сеансы фильма -->
+        <section class="search-session">
+            <h2>Доступные сеансы</h2>
+            <form action="place/schedule.html" method="get">
+                <input type="date" name="date" required>
+                <select name="format">
+                    <option value="2D">2D</option>
+                    <option value="3D">3D</option>
+                    <option value="IMAX">IMAX</option>
+                </select>
+                <button type="submit" class="btn">Найти сеанс</button>
+            </form>
+        </section>
+
+        <!-- Трейлер -->
+        <section class="trailers">
+            <h2>Смотрите трейлер</h2>
+            <div class="trailer-container">
+                <iframe
+                    src="https://rutube.ru/play/embed/6d0751c7b275bdf3e612a1e1e7aa857f/"
+                    title="Трейлер Minecraft Movie"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="reviews">
+            <h2>Отзывы зрителей</h2>
+            <div class="reviews-container" id="reviews-container">
+                <div class="review" data-id="1">
+                    <p><strong>Сергей:</strong> Очень атмосферно! Как будто снова играешь в Minecraft, но на большом экране!</p>
+                    <div class="review-actions"></div>
+                </div>
+                <div class="review" data-id="2">
+                    <p><strong>Катя:</strong> Красивые анимации и интересный сюжет. Понравилось всей семье.</p>
+                    <div class="review-actions"></div>
+                </div>
+            </div>
+            <form class="leave-review" id="review-form">
+                <h3>Оставить отзыв</h3>
+                <textarea id="review-text" placeholder="Напишите свой отзыв..." required></textarea>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© MovieGallery</p>
+    </footer>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="tab active" id="login-tab">Вход</button>
+                <button class="tab" id="register-tab">Регистрация</button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <div class="password-input">
+                            <input type="password" id="password" required>
+                            <button type="button" class="toggle-password">Скрыть</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="button">Войти</button>
+                </form>
+                <form id="register-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="reg-username">Никнейм</label>
+                        <input type="text" id="reg-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">E-mail</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Пароль</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Подтвердите пароль</label>
+                        <input type="password" id="confirm-password" required>
+                    </div>
+                    <button type="submit" class="button">Зарегистрироваться</button>
+                </form>
+            </div>
+            <button class="close-modal" id="close-modal">×</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initReviewsSystem('minecraft');
+        });
+    </script>
+    <script src="../js/common.js"></script>
+</body>
+</html>
